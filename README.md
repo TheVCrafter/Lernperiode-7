@@ -34,3 +34,9 @@ Um die Daten darzustellen, nutze ich **localStorage**, sodass alle Veränderunge
 
 Die Webpage sieht im Moment so aus:
 <img src="StonkSimProgress.png">
+
+## 07.11.
+- [ ] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders implementieren und das Trade-Formular übersichtlicher gestalten.  
+- [ ] **Live Market Overview verbessern:** Mehr Kryptowährungen hinzufügen und sicherstellen, dass alle Daten korrekt angezeigt werden.  
+- [ ] **Fehlerbehandlung:** Probleme beim "Today's Change"-Display beheben und Ladeanzeigen oder Fehlermeldungen für ungültige Daten integrieren.  
+- [ ] **Charts optimieren:** Wallet- und Crypto-Performance-Charts interaktiver gestalten und die Auswahl verschiedener Zeiträume stabilisieren.  
