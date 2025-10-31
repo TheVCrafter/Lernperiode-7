@@ -27,3 +27,10 @@ Dabei fiel mir allerdings auf, dass etwas nicht funktionierte. Um den Fehler zu 
 - [X] **Kurs:** Das JavaScript um eine Funktion ergänzen um mit aus dem API-Call erhaltenen historischen und aktuellen informationen ein Kurs-Display für die betreffende Kryptowährung zu erstellen.
 - [X] **Speichern:** Informieren über das Speichern von Account-Daten (json) wie z.B. Account Value, Holdings etc.
 
+Heute habe ich zunächst die Fehlenden HTML-Elemente ergänzt und anschliessend an dem Aussehen der Website gearbeitet. Dabei achtete ich darauf, die Struktur möglichst so umzusetzten wie letzte Woche auf Papier geplant. Farblich entschied ich mich für ein Dunkleres Design mit Blau und Schwarz. Anschliessend informierte ich mich über das Internet, wie ich die benötigten Liniendiagramme für die Wallet-Performance und die Crypto-spezifische Performance umsetzten könnte. Ich stiess dabei auf **Chart.js**. Damit erstellte ich anschliessend ein Liniendiagramm für die Wallet-Performance, das automatisch die täglichen Änderungen basierend auf den gespeicherten Account-Daten anzeigt.  
+Zusätzlich habe ich ein separates Liniendiagramm für die Performance einzelner Kryptowährungen implementiert, das beim Anklicken eines Coins in der Live-Markt-Tabelle geladen wird.  
+
+Um die Daten darzustellen, nutze ich **localStorage**, sodass alle Veränderungen durch Käufe oder Verkäufe direkt in den Charts sichtbar werden. Die Buttons zur Auswahl verschiedener Zeiträume (1W, 1M, 3M, 6M, 1Y) habe ich ebenfalls eingebunden und die Chart-Updates so programmiert, dass sie den gewählten Zeitraum korrekt berücksichtigen. Die Wallet-Daten und die historischen Kursinformationen der einzelnen Coins werden automatisch im LocalStorage gespeichert, sodass die Charts bei jedem Laden der Seite oder nach Trades aktuell bleiben.
+
+Die Webpage sieht im Moment so aus:
+<img src="StonkSimProgress.png">
