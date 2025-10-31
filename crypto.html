@@ -4,37 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptography Overview</title>
+    <title>CryptoSim Overview</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src="JavaScript/script.js"></script>
 </head>
 
 <body>
     <header>
-        <h1>CryptoSim</h1>
+        <h1 class="title">StonkSim</h1>
+        <a class="btn" href="stocks.html">Stocks</a>
     </header>
-    <main>
-        <section>
-            <h1>Live Crypto Market Overview</h1>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Current Price (USD)</th>
-                        <th>Market Cap</th>
-                        <th>24h Volume</th>
-                        <th>Change (1h)</th>
-                        <th>Change (24h)</th>
-                        <th>Change (7d)</th>
-                        <th>Change (30d)</th>
-                        <th>Technical Rating (1h)</th>
-                    </tr>
-                </thead>
-                <tbody id="crypto-table-body"></tbody>
-            </table>
-        </section>
+    <main>
+        <div class="left-column">
+            <section class="Overview">
+                <h1 class="section-header">Overview</h1>
+                <div class="overview">
+                    <p id="overview-value">Account Value: </p>
+                    <p id="overview-cash">Cash: </p>
+                    <p id="overview-change">24h Change: </p>
+                </div>
+                <button id="tradeBtn" class="trade-button">+ Trade</button>
+            </section>
+
+            <section class="Trade">
+                <div class="trade-modal-content">
+                    <h1 class="section-header">Trade</h1>
+                    <label>Currency:</label>
+                    <input id="trade-currency" type="text" value="BTC">
+                    <label>Amount to spend (USD):</label>
+                    <input id="trade-amount" type="number" value="100" step="0.01">
+                    <label>OR Quantity:</label>
+                    <input id="trade-quantity" type="number" step="0.0001">
+                    <label>Order Type:</label>
+                    <select id="order-type">
+                        <option value="market-buy">Market Buy</option>
+                        <option value="market-sell">Market Sell</option>
+                    </select>
+                    <button id="trade-confirmationBtn">Confirm Trade</button>
+                    <button id="trade-closeBtn">Cancel</button>
+                </div>
+            </section>
+
+
+
+            <section class="Holdings">
+                <h1 class="section-header">Holdings</h1>
+                <table class="crypto-holdings">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Quantity</th>
+                            <th>Current Price</th>
+                            <th>Total Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="holdings-body"></tbody>
+                </table>
+            </section>
+
+            <section class="Pending">
+                <h1 class="section-header">Pending Trades</h1>
+                <table class="crypto-holdings">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Current Price</th>
+                            <th>Quantity</th>
+                            <th>Transaction</th>
+                        </tr>
+                    </thead>
+                    <tbody id="crypto-pending-body"></tbody>
+                </table>
+            </section>
+        </div>
+
+        <div class="center-column">
+            <div class="chart-controls">
+                <button class="time-range-btn" data-range="1W">1W</button>
+                <button class="time-range-btn" data-range="1M">1M</button>
+                <button class="time-range-btn" data-range="3M">3M</button>
+                <button class="time-range-btn" data-range="6M">6M</button>
+                <button class="time-range-btn" data-range="1Y">1Y</button>
+            </div>
+            <canvas class="performance-graph"></canvas>
+            <canvas class="selected-crypto-graph" id="selected-crypto-graph"></canvas>
+        </div>
+
+
+        <div class="right-column">
+            <section class="LiveMarket">
+                <h1 class="section-header">Live Crypto Market Overview</h1>
+                <table class="live-market-table">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Current Price (USD)</th>
+                            <th>Market Cap</th>
+                            <th>24h Volume</th>
+                            <th>Change (1h)</th>
+                            <th>Change (24h)</th>
+                            <th>Change (7d)</th>
+                            <th>Change (30d)</th>
+                            <th>Technical Rating (1h)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="live-market-body"></tbody>
+                </table>
+            </section>
+        </div>
     </main>
+
     <footer>
         <p>&copy; 2024 CryptoSim. All rights reserved.</p>
     </footer>
