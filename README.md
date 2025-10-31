@@ -22,7 +22,8 @@ Danach habe ich bereits einen ersten HTML-Teil erstellt – eine Tabelle zum Anz
 Dabei fiel mir allerdings auf, dass etwas nicht funktionierte. Um den Fehler zu untersuchen, führte ich den API-Call nochmals über die Browser-Konsole aus und entdeckte durch die Fehlermeldungen, dass direkte Anfragen vom Browser aus aufgrund der **CORS-Richtlinien** blockiert werden. Daraus folgt, dass ich die Daten über einen kleinen **Server-Proxy** abgerufen werden musste, um die API korrekt nutzen zu können.
 
 ## 31.10.
-- [ ] **CSS:** Grundlegendes CSS-Design erstellen. Die Website soll ein Dunkles Design verfolgen und ausserdem auf das Design des Aktienteils abgestimmt werden.
-- [ ] **HTML** Header und Footer im HTML finalisieren und fehlende HTML-Elemente für *Overview*, *Holdings*, *Performance (Kurs)*, *Pending Trades* etc. einfügen.
-- [ ] **Kurs:** Das JavaScript um eine Funktion ergänzen um mit aus dem API-Call erhaltenen historischen und aktuellen informationen ein Kurs-Display für die betreffende Kryptowährung zu erstellen.
-- [ ] **Speichern:** Informieren über das Speichern von Account-Daten (json) wie z.B. Account Value, Holdings etc.
+- [X] **CSS:** Grundlegendes CSS-Design erstellen. Die Website soll ein Dunkles Design verfolgen und ausserdem auf das Design des Aktienteils abgestimmt werden.
+- [X] **HTML** Header und Footer im HTML finalisieren und fehlende HTML-Elemente für *Overview*, *Holdings*, *Performance (Kurs)*, *Pending Trades* etc. einfügen.
+- [X] **Kurs:** Das JavaScript um eine Funktion ergänzen um mit aus dem API-Call erhaltenen historischen und aktuellen informationen ein Kurs-Display für die betreffende Kryptowährung zu erstellen.
+- [X] **Speichern:** Informieren über das Speichern von Account-Daten (json) wie z.B. Account Value, Holdings etc.
+
