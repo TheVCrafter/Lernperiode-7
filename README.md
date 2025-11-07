@@ -33,10 +33,50 @@ Zusätzlich habe ich ein separates Liniendiagramm für die Performance einzelner
 Um die Daten darzustellen, nutze ich **localStorage**, sodass alle Veränderungen durch Käufe oder Verkäufe direkt in den Charts sichtbar werden. Die Buttons zur Auswahl verschiedener Zeiträume (1W, 1M, 3M, 6M, 1Y) habe ich ebenfalls eingebunden und die Chart-Updates so programmiert, dass sie den gewählten Zeitraum korrekt berücksichtigen. Die Wallet-Daten und die historischen Kursinformationen der einzelnen Coins werden automatisch im LocalStorage gespeichert, sodass die Charts bei jedem Laden der Seite oder nach Trades aktuell bleiben.
 
 Die Webpage sieht im Moment so aus:
-<img src="StonkSimProgress.png">
+<img src="StonkSimProgress3110.png">
 
 ## 07.11.
-- [ ] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders implementieren und das Trade-Formular übersichtlicher gestalten.  
+- [X] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders implementieren und das Trade-Formular übersichtlicher gestalten.  
 - [ ] **Live Market Overview verbessern:** Mehr Kryptowährungen hinzufügen und sicherstellen, dass alle Daten korrekt angezeigt werden.  
-- [ ] **Fehlerbehandlung:** Probleme beim "Today's Change"-Display beheben und Ladeanzeigen oder Fehlermeldungen für ungültige Daten integrieren.  
-- [ ] **Charts optimieren:** Wallet- und Crypto-Performance-Charts interaktiver gestalten und die Auswahl verschiedener Zeiträume stabilisieren.  
+- [X] **Fehlerbehandlung:** Probleme beim "Today's Change"-Display beheben und Ladeanzeigen oder Fehlermeldungen für ungültige Daten integrieren.  
+- [X] **Charts optimieren:** Wallet- und Crypto-Performance-Charts interaktiver gestalten und die Auswahl verschiedener Zeiträume stabilisieren.
+
+Heute habe ich die **Trade-Funktionen** im Crypto-Teil stark erweitert und das Trade-Panel für Nutzer ausserdem benutzerfreundlicher gestaltet. Das Panel erlaubt nun die Eingabe entweder der Menge (*Quantity*) oder des Betrags in Dollar (*Amount*). Nur eines der beiden Felder muss ausgefüllt werden, das jeweils andere wird automatisch berechnet. Die Berechnung erfolgt dynamisch über folgende Logik:
+
+```javascript
+if (!quantity && amount) quantity = amount / currentPrice;
+if (!amount && quantity) amount = quantity * currentPrice;
+```
+
+Die **Market Buy**- und **Sell-Funktionen** habe ich so umgesetzt, dass auch Coins, die noch nicht in den Holdings vorhanden sind, korrekt gehandelt werden können. Dabei werden die *Live-Marktdaten* aus dem LocalStorage genutzt, um den aktuellen Preis zuverlässig zu bestimmen.  
+
+Ein Problem, das ich gelöst habe, war, dass Buttons nach wiederholtem Öffnen des Panels nicht mehr reagierten. Die Lösung war, die Buttons beim Öffnen des Panels **zu klonen** und neue Event-Listener zuzuweisen:
+
+```javascript
+const newBtn = oldBtn.cloneNode(true);
+oldBtn.parentNode.replaceChild(newBtn, oldBtn);
+newBtn.addEventListener("click", () => executePanelOrder("market-buy"));
+```
+
+Nach jedem Trade werden **Holdings**, **Cash-Bestand** und die **Wallet-Daten** sofort aktualisiert. Dadurch spiegeln sich alle Änderungen direkt in den Tabellen und Charts wider. Die Wallet-Chart und die Crypto-Performance-Charts aktualisieren sich automatisch und berücksichtigen verschiedene Zeiträume (*1W*, *1M*, *3M*, *6M*, *1Y*):
+
+```javascript
+document.querySelectorAll(".time-range-btn").forEach(btn => {
+    btn.addEventListener("click", () => updateWalletChart(btn.dataset.range));
+});
+```
+
+Zusätzlich habe ich die **Pending Orders** implementiert. Limit-Buy- und Stop-Limit-Orders werden im LocalStorage gespeichert und regelmässig überprüft. Sobald die Bedingungen erfüllt sind, werden die Orders automatisch ausgeführt:
+
+```javascript
+if (o.type === "limit-buy" && price <= o.limitPrice) {
+    handleMarketBuy(o.symbol, o.quantity);
+    updatedOrders = updatedOrders.filter(ord => ord !== o);
+}
+```
+
+Abschliessend habe ich noch die **Fehlerbehandlung** verbessert: Ungültige Eingaben werden abgefangen, Warnungen werden angezeigt und fehlende Daten (z. B. Coin nicht gefunden) führen nicht mehr zu Fehlfunktionen.  
+
+Ich konnte heute also insgesamt die Interaktivität der Seite deutlich erhöhen und die Kernfunktionen für den Crypto-Handel auf ein stabiles Fundament stellen.
+<img src="TradeOverlay.png">
+<img src="StonkSimProgress0711.png">
