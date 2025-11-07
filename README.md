@@ -47,6 +47,9 @@ Heute habe ich die **Trade-Funktionen** im Crypto-Teil stark erweitert und das T
 if (!quantity && amount) quantity = amount / currentPrice;
 if (!amount && quantity) amount = quantity * currentPrice;
 ```
+Das Panel selbst sieht nun so aus:
+
+<img src="TradeOverlay.png" width=200px>
 
 Die **Market Buy**- und **Sell-Funktionen** habe ich so umgesetzt, dass auch Coins, die noch nicht in den Holdings vorhanden sind, korrekt gehandelt werden können. Dabei werden die *Live-Marktdaten* aus dem LocalStorage genutzt, um den aktuellen Preis zuverlässig zu bestimmen.  
 
@@ -78,5 +81,11 @@ if (o.type === "limit-buy" && price <= o.limitPrice) {
 Abschliessend habe ich noch die **Fehlerbehandlung** verbessert: Ungültige Eingaben werden abgefangen, Warnungen werden angezeigt und fehlende Daten (z. B. Coin nicht gefunden) führen nicht mehr zu Fehlfunktionen.  
 
 Ich konnte heute also insgesamt die Interaktivität der Seite deutlich erhöhen und die Kernfunktionen für den Crypto-Handel auf ein stabiles Fundament stellen.
-<img src="TradeOverlay.png">
+
 <img src="StonkSimProgress0711.png">
+
+## 14.11
+- [ ] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders fertigstellen, Trade-Panel übersichtlicher gestalten, automatische Aktualisierung von Holdings und Wallet-Daten nach Orderausführung sicherstellen.  
+- [ ] **Order-Historie einführen:** Alle ausgeführten und stornierten Orders mit Coin, Menge, Preis und Zeitstempel anzeigen.  
+- [ ] **Live Market Overview verbessern:** Mehr Coins anzeigen, Sortier- und Suchfunktionen einbauen, korrekte Anzeige aller Daten sicherstellen.  
+- [ ] **Code aufräumen:** JS-Code in mehrere Dateien auslagern (*market.js*, *trade.js*, *charts.js*), um Übersichtlichkeit und Wartbarkeit zu erhöhen.
