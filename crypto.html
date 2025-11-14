@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoSim Overview</title>
+    <title>StonkSim - Crypto</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="JavaScript/script.js"></script>
+    <script type="module" defer src="JavaScript/main.js"></script>
 </head>
 
 <body>
@@ -77,32 +77,49 @@
         <div class="right-column">
             <section class="LiveMarket">
                 <h1 class="section-header">Live Crypto Market Overview</h1>
-                <table class="live-market-table">
-                    <thead>
-                        <tr>
-                            <th>Symbol</th>
-                            <th>Current Price (USD)</th>
-                            <th>Market Cap</th>
-                            <th>24h Volume</th>
-                            <th>Change (1h)</th>
-                            <th>Change (24h)</th>
-                            <th>Change (7d)</th>
-                            <th>Change (30d)</th>
-                            <th>Technical Rating (1h)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="live-market-body"></tbody>
-                </table>
+                <div class="table-controls">
+                    <input type="text" id="market-search" class="table-search" placeholder="Search currency..." />
+                </div>
+
+                <div class="table-container">
+                    <table id="live-market-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-key="symbol">Symbol</th>
+                                <th class="sortable" data-key="price">Price</th>
+                                <th class="sortable" data-key="market_cap">Market Cap</th>
+                                <th class="sortable" data-key="volume_24h">Volume 24h</th>
+                                <th class="sortable" data-key="percent_change_1h">1h %</th>
+                                <th class="sortable" data-key="percent_change_24h">24h %</th>
+                                <th class="sortable" data-key="percent_change_7d">7d %</th>
+                                <th class="sortable" data-key="percent_change_30d">30d %</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="live-market-body">
+                            <!-- dynamic rows -->
+                        </tbody>
+                    </table>
+                    <div id="pagination-controls">
+                        <button id="prev-page">Previous</button>
+                        <span id="page-info"></span>
+                        <button id="next-page">Next</button>
+                    </div>
+                </div>
+
+
             </section>
             <div class="selected-crypto-chart-container">
                 <canvas class="selected-crypto-graph" id="selected-crypto-graph"></canvas>
             </div>
         </div>
     </main>
-    <div id="holding-trade-panel" class="holding-panel"
-        style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background:#1e1e1e; color:#e3edf7; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); z-index:1000;">
+
+    <div id="holding-trade-panel" class="holding-panel">
         <h2 id="holding-panel-title">Trade</h2>
+
         <div class="panel-inputs" style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+            <select id="panel-coin-select" style="padding:5px; border-radius:5px; border:none;"></select>
             <input id="panel-quantity" type="number" placeholder="Quantity"
                 style="padding:5px; border-radius:5px; border:none;">
             <input id="panel-amount" type="number" placeholder="Amount in $"
@@ -112,15 +129,45 @@
             <input id="panel-stopPrice" type="number" placeholder="Stop Price"
                 style="padding:5px; border-radius:5px; border:none;">
         </div>
-        <div class="panel-buttons" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:15px;">
-            <button id="panel-market-buy">Market Buy</button>
-            <button id="panel-market-sell">Market Sell</button>
-            <button id="panel-limit-buy">Limit Buy</button>
-            <button id="panel-stop-limit">Stop-Limit Sell</button>
-            <button id="panel-cancel-orders" style="margin-left:auto; background:red; color:white;">Cancel
-                Orders</button>
+
+        <!-- MARKET ORDERS -->
+        <div class="panel-group">
+            <h3>Market Orders</h3>
+            <div class="panel-buttons">
+                <button id="panel-market-buy">Market Buy</button>
+                <button id="panel-market-sell">Market Sell</button>
+            </div>
         </div>
+
+        <!-- LIMIT ORDERS -->
+        <div class="panel-group">
+            <h3>Limit Orders</h3>
+            <div class="panel-buttons">
+                <button id="panel-limit-buy">Limit Buy</button>
+                <button id="panel-limit-sell">Limit Sell</button>
+                <button id="panel-take-profit">Take Profit</button>
+            </div>
+        </div>
+
+        <!-- STOP ORDERS -->
+        <div class="panel-group">
+            <h3>Stop Orders</h3>
+            <div class="panel-buttons">
+                <button id="panel-stop-loss">Stop-Loss Sell</button>
+                <button id="panel-stop-limit">Stop-Limit Sell</button>
+            </div>
+        </div>
+
+        <!-- ORDER MANAGEMENT -->
+        <div class="panel-group">
+            <h3>Order Management</h3>
+            <div class="panel-buttons">
+                <button id="panel-cancel-orders" class="cancel-orders">Cancel Orders</button>
+            </div>
+        </div>
+
     </div>
+
     <footer>
         <p>&copy; 2024 CryptoSim. All rights reserved.</p>
     </footer>

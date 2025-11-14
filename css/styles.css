@@ -5,7 +5,8 @@
     padding: 0;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
     background-color: #000010;
@@ -190,18 +191,44 @@ main {
 }
 
 /* ------------------- Tables ------------------- */
+.table-search {
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 250px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 153, 255, 0.4);
+    background-color: #000016;
+    color: #e3edf7;
+    font-size: 13px;
+}
+
+.table-search:focus {
+    outline: none;
+    border-color: #0099ff;
+}
+
+.table-container {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 153, 255, 0.4);
+    background-color: #000016;
+    box-shadow: 0 4px 12px rgba(0, 153, 255, 0.1);
+    overflow-x: auto;
+    padding: 4px;
+    margin-top: 12px;
+}
+
 table {
-    margin-top: 20px;
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 12px;
     background-color: #000016;
-    border: 1px solid rgba(0, 153, 255, 0.4);
     color: #e3edf7;
-    box-shadow: 0 4px 12px rgba(0, 153, 255, 0.1);
     overflow: hidden;
     font-size: 13px;
+    table-layout: fixed;
 }
 
 thead {
@@ -209,29 +236,103 @@ thead {
 }
 
 th {
-    height: 30px;
+    height: 36px;
     text-align: center;
     color: #0099ff;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 13px;
     border-bottom: 1px solid rgba(0, 153, 255, 0.3);
+    padding: 0 8px;
 }
 
-th:first-child { border-top-left-radius: 12px; }
-th:last-child { border-top-right-radius: 12px; }
+th:first-child {
+    border-top-left-radius: 12px;
+}
+
+th:last-child {
+    border-top-right-radius: 12px;
+}
+
+th.sortable {
+    cursor: pointer;
+    position: relative;
+}
+
+th.sortable::after {
+    content: '⇅';
+    font-size: 10px;
+    margin-left: 6px;
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.2s;
+}
+
+th.sortable:hover::after {
+    color: #0099ff;
+}
+
+tbody tr {
+    height: 40px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 153, 255, 0.02);
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 153, 255, 0.05);
+    cursor: pointer;
+}
 
 td {
-    padding: 8px 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-align: center;
 }
 
-tbody tr:nth-child(even) { background-color: rgba(0, 153, 255, 0.02); }
-tbody tr:hover { background-color: rgba(0, 153, 255, 0.05); cursor: pointer; }
+td.positive {
+    color: #4caf50;
+    font-weight: 600;
+}
 
-td.positive { color: #4caf50; font-weight: 600; }
-td.negative { color: #f44336; font-weight: 600; }
-td:nth-child(n+2) { text-align: right; }
+td.negative {
+    color: #f44336;
+    font-weight: 600;
+}
+
+td:nth-child(n+2) {
+    text-align: right;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    gap: 6px;
+}
+
+.pagination button {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #0099ff;
+    background-color: #000035;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.pagination button:hover {
+    background-color: rgba(0, 153, 255, 0.2);
+}
+
+#page-info {
+    color: #0099ff;
+    font-weight: bold;
+    margin: 0 10px;
+}
 
 /* ------------------- Inputs ------------------- */
 input[type="text"],
@@ -248,7 +349,10 @@ select {
 }
 
 input:focus,
-select:focus { outline: none; border-color: #0099ff; }
+select:focus {
+    outline: none;
+    border-color: #0099ff;
+}
 
 /* ------------------- Buttons ------------------- */
 button {
@@ -261,7 +365,9 @@ button {
     cursor: pointer;
 }
 
-button:hover { background-color: rgba(0, 153, 255, 0.2); }
+button:hover {
+    background-color: rgba(0, 153, 255, 0.2);
+}
 
 /* ------------------- Footer ------------------- */
 footer {
@@ -277,29 +383,42 @@ footer {
 }
 
 /* ------------------- Holding & Trade Panels ------------------- */
-.holding-panel,
-.trade-overlay .trade-panel {
+.holding-panel {
     display: none;
+    left: 40%;
+    top: 20%;
     position: absolute;
     background: #1e1e1e;
     color: #e3edf7;
-    border: 2px solid #555;
     padding: 20px;
     border-radius: 12px;
     z-index: 1000;
     width: 320px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
     flex-direction: column;
     gap: 14px;
 }
 
-.holding-panel h4,
-.trade-overlay h4 {
+.holding-panel h4 {
     margin-top: 0;
     font-size: 16px;
     color: #0099ff;
     border-bottom: 1px solid rgba(0, 153, 255, 0.3);
     padding-bottom: 6px;
+}
+
+.panel-group h3 {
+    font-size: 14px;
+    color: #0099ff;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(0, 153, 255, 0.3);
+    padding-bottom: 4px;
+}
+
+.panel-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .holding-panel .panel-inputs,
@@ -348,12 +467,29 @@ footer {
     color: #fff;
 }
 
-.holding-panel .btn-buy, .trade-overlay .btn-buy { background-color: #00b894; }
-.holding-panel .btn-sell, .trade-overlay .btn-sell { background-color: #d63031; }
-.holding-panel .btn-limit-buy, .trade-overlay .btn-limit-buy,
-.holding-panel .btn-limit-sell, .trade-overlay .btn-limit-sell { background-color: #0984e3; }
-.holding-panel .btn-stop-buy, .trade-overlay .btn-stop-buy,
-.holding-panel .btn-stop-sell, .trade-overlay .btn-stop-sell { background-color: #fdcb6e; }
+.holding-panel .btn-buy,
+.trade-overlay .btn-buy {
+    background-color: #00b894;
+}
+
+.holding-panel .btn-sell,
+.trade-overlay .btn-sell {
+    background-color: #d63031;
+}
+
+.holding-panel .btn-limit-buy,
+.trade-overlay .btn-limit-buy,
+.holding-panel .btn-limit-sell,
+.trade-overlay .btn-limit-sell {
+    background-color: #0984e3;
+}
+
+.holding-panel .btn-stop-buy,
+.trade-overlay .btn-stop-buy,
+.holding-panel .btn-stop-sell,
+.trade-overlay .btn-stop-sell {
+    background-color: #fdcb6e;
+}
 
 .holding-panel .btn-close,
 .trade-overlay .btn-close {
@@ -364,23 +500,69 @@ footer {
 }
 
 .holding-panel .btn-close:hover,
-.trade-overlay .btn-close:hover { background-color: rgba(0, 153, 255, 0.2); }
+.trade-overlay .btn-close:hover {
+    background-color: rgba(0, 153, 255, 0.2);
+}
+
+.cancel-orders {
+    margin-left: auto;
+    background: red;
+    color: white;
+}
 
 /* ------------------- Responsive ------------------- */
 @media (max-width: 1200px) {
-    main { flex-direction: column; }
+    main {
+        flex-direction: column;
+    }
 
-    .left-column, .center-column, .right-column { width: 100%; }
-    .center-column { margin: 20px 0; }
-    .right-column { margin-top: 20px; }
+    .left-column,
+    .center-column,
+    .right-column {
+        width: 100%;
+    }
 
-    .selected-crypto-graph { width: 100%; height: 150px; }
+    .center-column {
+        margin: 20px 0;
+    }
+
+    .right-column {
+        margin-top: 20px;
+    }
+
+    tbody tr {
+        height: 36px;
+    }
+
+    .selected-crypto-graph {
+        width: 100%;
+        height: 150px;
+    }
 }
 
 @media (max-width: 600px) {
+
     .holding-panel,
-    .trade-overlay .trade-panel { width: 90%; }
+    .trade-overlay .trade-panel {
+        width: 90%;
+    }
+
+    tbody tr {
+        height: 32px;
+    }
+
+    .table-search {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
 
     .holding-panel .panel-buttons button,
-    .trade-overlay .panel-buttons button { flex: 1 1 100%; }
+    .trade-overlay .panel-buttons button {
+        flex: 1 1 100%;
+    }
 }
