@@ -85,7 +85,9 @@ Ich konnte heute also insgesamt die Interaktivität der Seite deutlich erhöhen 
 <img src="StonkSimProgress0711.png">
 
 ## 14.11
-- [ ] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders fertigstellen, Trade-Panel übersichtlicher gestalten, automatische Aktualisierung von Holdings und Wallet-Daten nach Orderausführung sicherstellen.  
+- [X] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders fertigstellen, Trade-Panel übersichtlicher gestalten, automatische Aktualisierung von Holdings und Wallet-Daten nach Orderausführung sicherstellen.  
 - [ ] **Order-Historie einführen:** Alle ausgeführten und stornierten Orders mit Coin, Menge, Preis und Zeitstempel anzeigen.  
-- [ ] **Live Market Overview verbessern:** Mehr Coins anzeigen, Sortier- und Suchfunktionen einbauen, korrekte Anzeige aller Daten sicherstellen.  
-- [ ] **Code aufräumen:** JS-Code in mehrere Dateien auslagern (*market.js*, *trade.js*, *charts.js*), um Übersichtlichkeit und Wartbarkeit zu erhöhen.
+- [X] **Live Market Overview verbessern:** Mehr Coins anzeigen, Sortier- und Suchfunktionen einbauen, korrekte Anzeige aller Daten sicherstellen.  
+- [X] **Code aufräumen:** JS-Code in mehrere Dateien auslagern (*market.js*, *trade.js*, *charts.js*), um Übersichtlichkeit und Wartbarkeit zu erhöhen.
+
+Zunächst habe ich mich heute damit beschäftigt
