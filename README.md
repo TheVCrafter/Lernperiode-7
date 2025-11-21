@@ -13,9 +13,9 @@ Was möchten Sie insbesondere dabei lernen oder üben?
 - [X] Arbeitspaket 2: Setzen Sie in HTML und CSS Ihren Entwurf auf rudimentäre Weise um.
 - [X] Arbeitspaket 3: Schreiben Sie ersten JS-Code als proof of concept (bspw. Meldung bei Klick auf Knopf-Element)
 
-Heute habe ich zunächst nach einer API gesucht, um Daten zu verschiedenen Kryptowährungen live abzurufen. Dabei stieß ich auf die API von [CoinMarketCap](https://coinmarketcap.com/api/), die mir mit einem Limit von 30 API-Calls pro Minute und insgesamt 10.000 pro Monat fürs Erste ausreicht. 
+Heute habe ich zunächst nach einer API gesucht, um Daten zu verschiedenen Kryptowährungen live abzurufen. Dabei stiess ich auf die API von [CoinMarketCap](https://coinmarketcap.com/api/), die mir mit einem Limit von 30 API-Calls pro Minute und insgesamt 10.000 pro Monat fürs Erste ausreicht. 
 
-Anschließend habe ich mir Gedanken zum Aufbau der Website gemacht. Ich ließ mich dabei stark von *Investopedia* inspirieren, entschied mich aber gleichzeitig, die Struktur etwas umzubauen und zusätzlich einige weitere Informationen anzuzeigen.  
+Anschliessend habe ich mir Gedanken zum Aufbau der Website gemacht. Ich liess mich dabei stark von *Investopedia* inspirieren, entschied mich aber gleichzeitig, die Struktur etwas umzubauen und zusätzlich einige weitere Informationen anzuzeigen.  
 
 Danach habe ich bereits einen ersten HTML-Teil erstellt – eine Tabelle zum Anzeigen der aktuellen Daten – und mithilfe von [ChatGPT](https://chatgpt.com/) mit API-Calls über JavaScript experimentiert. Für einige Kryptowährungen konnte ich bereits den API-Call zum Befüllen der Tabelle einrichten. 
 
@@ -97,7 +97,100 @@ Anschliessend habe ich den **Live-Market-Overview-Table** erweitert. Es werden j
 Zum Schluss habe ich begonnen, den gesamten **JavaScript-Code neu zu strukturieren**. Die Logik wurde in einzelne Dateien ausgelagert (`market.js`, `trade.js`, `charts.js`), um eine sauberere Trennung der Funktionen zu gewährleisten und so die Übersichtlichkeit zu erhöhen
 
 ## 21.11.
-- [ ] **LocalStorage:** Verbessern der Speicherung von Market- und Walletdaten um die entsprechenden Graphen richtig anzeigen zu können.
-- [ ] **Responsivenes:** Überprüfung der Responsivenes der Website und Behebung von Verziehen der Graphen bei verkleinerung/vergrösserung des Fensters.
-- [ ] **Logo:** Designen eines für unsere Website passendes Logo (evtl. zwei Varianten für Crypto und Stocks) auf Canva.
-- [ ] **CryptoPerformance:** Finalisierung des für das Anzeigen der historischen Performance einer angeklickten Währung zuständigen Graphs.
+- [X] **LocalStorage:** Verbessern der Speicherung von Market- und Walletdaten um die entsprechenden Graphen richtig anzeigen zu können.
+- [X] **Responsivenes:** Überprüfung der Responsivenes der Website und Behebung von Verziehen der Graphen bei verkleinerung/vergrösserung des Fensters.
+- [X] **Logo:** Designen eines für unsere Website passendes Logo (evtl. zwei Varianten für Crypto und Stocks) auf Canva.
+- [X] **CryptoPerformance:** Finalisierung des für das Anzeigen der historischen Performance einer angeklickten Währung zuständigen Graphs.
+
+Heute habe ich zunächst die **LocalStorage-Logik** überarbeitet. Ziel war es, dass die Charts für Portfolio und einzelne Kryptowährungen die gespeicherten Daten korrekt darstellen. Dabei werden Wallet-Werte und historische Coin-Preise nach jedem Trade automatisch gespeichert:
+
+```javascript
+// Beispiel: Speichern eines Crypto-Preises im LocalStorage
+export function saveCryptoPrice(symbol, price) {
+    const now = new Date().toISOString();
+    const key = `cryptoHistory_${symbol}`;
+    const history = JSON.parse(localStorage.getItem(key) || "[]");
+    history.push({ time: now, price });
+    if (history.length > 1000) history.shift();
+    localStorage.setItem(key, JSON.stringify(history));
+}
+```
+
+Anschliessend habe ich die **Responsiveness der Charts** geprüft. Dabei fiel auf, dass die Diagramme sich beim Verkleinern oder Vergrössern des Fensters verzerrten. Dies habe ich durch Anpassungen im CSS und durch flexibles Setzen der `width` und `height` der Canvas-Elemente behoben:
+
+```css
+.performance-graph,
+.selected-crypto-graph {
+    width: 100%;
+    height: 250px;
+}
+```
+
+Danach habe ich ein **passendes Logo** für die Website entworfen. Das Logo ist dunkelblau mit einem leichten Verlauf, passend zum Design der Seite. (Platzhalter für das Bild)
+
+![Logo-Platzhalter](StonkSimLogo.png)
+
+Zum Schluss habe ich den **Crypto-Performance-Chart** fertiggestellt. Dieser Chart zeigt nun die historische Performance einer ausgewählten Kryptowährung, wenn der Nutzer auf einen Coin in der Live-Markt-Tabelle klickt. Im Moment gibt es für diesen Chart noch **keine Buttons zur Auswahl von Zeitbereichen**, nur der Portfolio-Chart besitzt diese Funktionalität.
+
+```javascript
+// Anzeige des Performance-Charts für ausgewählte Kryptowährung
+export async function showCryptoChart(symbol, price) {
+    saveCryptoPrice(symbol, price);
+
+    const history = getCryptoHistory(symbol);
+    if (!history.length) return;
+
+    const labels = history.map(h => new Date(h.time).toLocaleDateString());
+    const values = history.map(h => h.price);
+
+    const canvas = document.getElementById("selected-crypto-graph");
+    canvas.style.display = "block";
+
+    if (selectedCryptoChart) {
+        selectedCryptoChart.data.labels = labels;
+        selectedCryptoChart.data.datasets[0].label = symbol;
+        selectedCryptoChart.data.datasets[0].data = values;
+        selectedCryptoChart.options.plugins.title.text = `${symbol} Performance`;
+        selectedCryptoChart.update();
+    } else {
+        const ctx = canvas.getContext("2d");
+        selectedCryptoChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels,
+                datasets: [{
+                    label: symbol,
+                    data: values,
+                    borderColor: "#0099ff",
+                    backgroundColor: "rgba(0,153,255,0.2)",
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: `${symbol} Performance`,
+                        color: '#0099ff',
+                        font: { size: 18, weight: '600' },
+                        padding: { top: 10, bottom: 20 }
+                    }
+                },
+                scales: {
+                    x: { ticks: { color: "#e3edf7" }, grid: { color: "rgba(0,153,255,0.1)" } },
+                    y: { ticks: { color: "#e3edf7" }, grid: { color: "rgba(0,153,255,0.1)" } }
+                }
+            }
+        });
+    }
+}
+```
+
+Die Website sieht nun so aus:
+
+<img src="StonkSimProgress2111.png">
+
