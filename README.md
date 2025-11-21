@@ -84,7 +84,7 @@ Ich konnte heute also insgesamt die Interaktivität der Seite deutlich erhöhen 
 
 <img src="StonkSimProgress0711.png">
 
-## 14.11
+## 14.11.
 - [X] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders fertigstellen, Trade-Panel übersichtlicher gestalten, automatische Aktualisierung von Holdings und Wallet-Daten nach Orderausführung sicherstellen.  
 - [ ] **Order-Historie einführen:** Alle ausgeführten und stornierten Orders mit Coin, Menge, Preis und Zeitstempel anzeigen.  
 - [X] **Live Market Overview verbessern:** Mehr Coins anzeigen, Sortier- und Suchfunktionen einbauen, korrekte Anzeige aller Daten sicherstellen.  
@@ -95,3 +95,9 @@ Zunächst habe ich mich heute damit beschäftigt, die **Trade-Optionen zu übera
 Anschliessend habe ich den **Live-Market-Overview-Table** erweitert. Es werden jetzt nicht mehr wie vorher nur *25 Coins*, sondern **1000 Coins** geladen und korrekt angezeigt. Zudem habe ich eine **Suchfunktion** implementiert, mit der der Benutzer gezielt nach Kryptowährungen filtern kann, sowie eine **Sortierfunktion für jede Spalte**. Dadurch wirkt die Marktübersicht nicht nur informativer, sondern auch wesentlich interaktiver und benutzerfreundlicher.
 
 Zum Schluss habe ich begonnen, den gesamten **JavaScript-Code neu zu strukturieren**. Die Logik wurde in einzelne Dateien ausgelagert (`market.js`, `trade.js`, `charts.js`), um eine sauberere Trennung der Funktionen zu gewährleisten und so die Übersichtlichkeit zu erhöhen
+
+## 21.11.
+- [ ] **LocalStorage:** Verbessern der Speicherung von Market- und Walletdaten um die entsprechenden Graphen richtig anzeigen zu können.
+- [ ] **Responsivenes:** Überprüfung der Responsivenes der Website und Behebung von Verziehen der Graphen bei verkleinerung/vergrösserung des Fensters.
+- [ ] **Logo:** Designen eines für unsere Website passendes Logo (evtl. zwei Varianten für Crypto und Stocks) auf Canva.
+- [ ] **CryptoPerformance:** Finalisierung des für das Anzeigen der historischen Performance einer angeklickten Währung zuständigen Graphs.
