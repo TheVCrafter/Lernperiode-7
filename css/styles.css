@@ -30,6 +30,18 @@ header {
     z-index: 10;
 }
 
+.header-div {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 5rem;
+    height: auto;
+    margin-right: 1rem;
+    border-radius: 2rem;
+}
+
 .title {
     font-size: 32px;
     font-weight: 700;
@@ -67,14 +79,14 @@ main {
 }
 
 .left-column {
-    width: 25%;
+    width: 35%;
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
 .center-column {
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -112,32 +124,18 @@ main {
 }
 
 /* ------------------- Graphs ------------------- */
-.chart-container {
-    width: 100%;
+.chart-container,
+.selected-crypto-chart-container {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
 }
 
-.performance-graph {
-    flex: 1 1 100%;
+.performance-graph,
+.selected-crypto-graph {
+    width: 100%;
     height: 250px;
 }
-
-.selected-crypto-chart-container {
-    width: 100%;
-    margin-top: 16px;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.selected-crypto-graph {
-    display: none;
-    width: 48%;
-    height: 200px;
-}
-
-
 
 .center-column::after {
     content: "";
@@ -534,9 +532,9 @@ footer {
         height: 36px;
     }
 
+    .performance-graph,
     .selected-crypto-graph {
-        width: 100%;
-        height: 150px;
+        height: 200px;
     }
 }
 
@@ -564,5 +562,10 @@ footer {
     .holding-panel .panel-buttons button,
     .trade-overlay .panel-buttons button {
         flex: 1 1 100%;
+    }
+
+    .performance-graph,
+    .selected-crypto-graph {
+        height: 150px;
     }
 }

@@ -5,7 +5,7 @@ export const API_URL = "http://localhost:4000/api/crypto";
 let allData = [];
 let filteredData = [];
 let currentPage = 1;
-const pageSize = 20;
+const pageSize = 12;
 let currentSort = { column: null, order: 1 };
 
 // ---------------- Load Market ----------------

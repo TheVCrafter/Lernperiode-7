@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StonkSim - Crypto</title>
+    <link rel="icon" type="image/x-icon" href="/Resources/StonkSimLogo.ico">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" defer src="JavaScript/main.js"></script>
@@ -12,7 +13,10 @@
 
 <body>
     <header>
-        <h1 class="title">StonkSim</h1>
+        <div class="header-div">
+            <img class="logo" src="Resources/StonkSimLogo.png">
+            <h1 class="title">StonkSim</h1>
+        </div>
         <a class="btn" href="stocks.html">Stocks</a>
     </header>
 
@@ -60,6 +64,9 @@
         </div>
 
         <div class="center-column">
+            <div class="chart-container">
+                <canvas class="performance-graph" id="wallet-graph"></canvas>
+            </div>
             <div class="chart-controls">
                 <button class="time-range-btn" data-range="1W">1W</button>
                 <button class="time-range-btn" data-range="1M">1M</button>
@@ -67,10 +74,10 @@
                 <button class="time-range-btn" data-range="6M">6M</button>
                 <button class="time-range-btn" data-range="1Y">1Y</button>
             </div>
-            <div class="chart-container">
-                <canvas class="performance-graph" id="wallet-graph"></canvas>
-            </div>
 
+            <div class="selected-crypto-chart-container">
+                <canvas class="selected-crypto-graph" id="selected-crypto-graph"></canvas>
+            </div>
         </div>
 
 
@@ -109,9 +116,6 @@
 
 
             </section>
-            <div class="selected-crypto-chart-container">
-                <canvas class="selected-crypto-graph" id="selected-crypto-graph"></canvas>
-            </div>
         </div>
     </main>
 
