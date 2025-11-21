@@ -88,6 +88,10 @@ Ich konnte heute also insgesamt die Interaktivität der Seite deutlich erhöhen 
 - [X] **Trade-Funktionen erweitern:** Limit-Orders und Stop-Limit-Orders fertigstellen, Trade-Panel übersichtlicher gestalten, automatische Aktualisierung von Holdings und Wallet-Daten nach Orderausführung sicherstellen.  
 - [ ] **Order-Historie einführen:** Alle ausgeführten und stornierten Orders mit Coin, Menge, Preis und Zeitstempel anzeigen.  
 - [X] **Live Market Overview verbessern:** Mehr Coins anzeigen, Sortier- und Suchfunktionen einbauen, korrekte Anzeige aller Daten sicherstellen.  
-- [X] **Code aufräumen:** JS-Code in mehrere Dateien auslagern (*market.js*, *trade.js*, *charts.js*), um Übersichtlichkeit und Wartbarkeit zu erhöhen.
+- [X] **Code aufräumen:** JS-Code in mehrere Dateien auslagern (*`market.js`*, *`trade.js`*, *`charts.js`*), um Übersichtlichkeit und Wartbarkeit zu erhöhen.
 
-Zunächst habe ich mich heute damit beschäftigt
+Zunächst habe ich mich heute damit beschäftigt, die **Trade-Optionen zu überarbeiten und zu ergänzen**. Der Benutzer kann nun neben Market Orders und *Limit-Buy* auch *Limit-Sell*, *Stop-Limit-Sell*, *Stop-Loss-Sell* und *Take-Profit* anwenden. Ausserdem habe ich auch das **Design des Trade-Overlays** übersichtlicher gestaltet.
+
+Anschliessend habe ich den **Live-Market-Overview-Table** erweitert. Es werden jetzt nicht mehr wie vorher nur *25 Coins*, sondern **1000 Coins** geladen und korrekt angezeigt. Zudem habe ich eine **Suchfunktion** implementiert, mit der der Benutzer gezielt nach Kryptowährungen filtern kann, sowie eine **Sortierfunktion für jede Spalte**. Dadurch wirkt die Marktübersicht nicht nur informativer, sondern auch wesentlich interaktiver und benutzerfreundlicher.
+
+Zum Schluss habe ich begonnen, den gesamten **JavaScript-Code neu zu strukturieren**. Die Logik wurde in einzelne Dateien ausgelagert (`market.js`, `trade.js`, `charts.js`), um eine sauberere Trennung der Funktionen zu gewährleisten und so die Übersichtlichkeit zu erhöhen
