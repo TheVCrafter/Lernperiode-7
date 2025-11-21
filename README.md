@@ -126,9 +126,9 @@ Anschliessend habe ich die **Responsiveness der Charts** geprüft. Dabei fiel au
 }
 ```
 
-Danach habe ich ein **passendes Logo** für die Website entworfen. Das Logo ist dunkelblau mit einem leichten Verlauf, passend zum Design der Seite. (Platzhalter für das Bild)
+Danach habe ich mithilfe von [Canva](canva.com) ein **passendes Logo** für die Website entworfen.
 
-![Logo-Platzhalter](Ressources/StonkSimLogo.png)
+![Logo-Platzhalter](Resources/StonkSimLogo.png)
 
 Zum Schluss habe ich den **Crypto-Performance-Chart** fertiggestellt. Dieser Chart zeigt nun die historische Performance einer ausgewählten Kryptowährung, wenn der Nutzer auf einen Coin in der Live-Markt-Tabelle klickt. Im Moment gibt es für diesen Chart noch **keine Buttons zur Auswahl von Zeitbereichen**, nur der Portfolio-Chart besitzt diese Funktionalität.
 
