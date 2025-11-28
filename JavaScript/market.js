@@ -1,3 +1,5 @@
+import { refreshHoldingsValues } from './holdings.js';
+import { saveCryptoPrice, showCryptoChart } from './charts.js';
 import { formatNumber, formatChange, getChangeClass, getRating } from './utils.js';
 
 export const API_URL = "http://localhost:4000/api/crypto";
@@ -21,6 +23,10 @@ export async function loadLiveMarket() {
         allData = json.data;
         filteredData = [...allData];
         localStorage.setItem("cryptoData", JSON.stringify({ timestamp: new Date().toISOString(), data: allData }));
+
+        updateHoldingsFromMarket(allData);
+        updateCryptoHistoryFromMarket(allData);
+
         currentPage = 1;
         renderTable();
     } catch (err) {
@@ -126,4 +132,24 @@ document.getElementById("next-page").addEventListener("click", () => {
 function getNestedValue(obj, path) {
     const val = path.split('.').reduce((o, k) => o?.[k], obj);
     return val !== undefined && val !== null ? val : 0;
+}
+
+// ---------------- Update Holdings ----------------
+function updateHoldingsFromMarket(marketData) {
+    let holdings = JSON.parse(localStorage.getItem("cryptoHoldings")) || [];
+    const marketMap = new Map(marketData.map(c => [c.symbol, c.quote.USD.price]));
+
+    holdings = holdings.map(h => ({
+        ...h,
+        currentPrice: marketMap.get(h.symbol) ?? h.currentPrice
+    }));
+
+    localStorage.setItem("cryptoHoldings", JSON.stringify(holdings));
+
+    refreshHoldingsValues();
+}
+
+// ---------------- Update Crypto History ----------------
+function updateCryptoHistoryFromMarket(marketData) {
+    marketData.forEach(coin => saveCryptoPrice(coin.symbol, coin.quote.USD.price));
 }
