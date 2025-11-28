@@ -257,12 +257,12 @@ export async function showCryptoChart(symbol, price) {
 
 Wallet-Performance-Chart:
 
-![Wallet Chart Placeholder](Resources/WalletChart.png)
+![Wallet Chart Placeholder](WalletChart.png)
 
 Crypto-Performance-Chart:
 
-![Crypto Chart Placeholder](Resources/CryptoChart.png)
+![Crypto Chart Placeholder](CryptoChart.png)
 
 Overview-Panel:
 
-![Overview Placeholder](Resources/OverviewPanel.png)
+![Overview Placeholder](OverviewPanel.png)
