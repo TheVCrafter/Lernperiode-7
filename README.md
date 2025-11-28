@@ -1,12 +1,17 @@
 # Lern-Periode 7
 24.10. bis 19.12.2025
 
-# Grob-Planung
+## Grob-Planung
+In dieser Lernperiode möchte ich zusammen mit **@HerrDextro** einen umfassenden **Crypto- und Aktiensimulator** entwickeln, der sich am Funktionsumfang von [Investopedia](https://www.investopedia.com/simulator) orientiert. Das Ziel besteht darin, eine Lernplattform zu erstellen, die es ermöglicht, realitätsnahe Börsen- und Krypto-Handelsszenarien in einer sicheren Umgebung zu simulieren.
 
-In dieser Lernperiode möchte ich zusammen mit @HerrDextro einen Crypto- und Aktiensimulator wie [Investopedia](https://www.investopedia.com/simulator) erstellen. Dabei haben wir uns dafür entschieden, dass ich den Crypto-Teil übernehme. Dafür habe ich
-Für welche API möchten Sie ein eigenes front end erstellen?
-Welche groben Funktionalitäten soll Ihr front end zur Verfügung stellen?
-Was möchten Sie insbesondere dabei lernen oder üben?
+Wir haben festgelegt, dass ich den **Crypto-Teil** vollständig übernehme. Dies umfasst unter anderem:
+
+- **Recherche und Integration einer geeigneten API** zur Abfrage von Live-Marktdaten und historischen Kursverläufen.
+- **Entwicklung eines Frontends**, das Marktübersichten, Kursdiagramme, Benutzerportfolios und Handelsfunktionen anzeigt.
+- **Implementierung von Handelslogiken** wie Market Orders, Limit Orders oder Stop-Orders.
+- **Speicherung und Verarbeitung von Benutzerdaten**, etwa Holdings, Transaktionen, Wallet-Verlauf oder historischen Preisdaten.
+- **Gestaltung und Umsetzung eines benutzerfreundlichen Designs**, das sowohl informativ als auch intuitiv bedienbar ist.
+- **Technisches Lernen und Vertiefen**, z. B. im Umgang mit APIs, Datenverarbeitung, Chart-Frameworks, JavaScript-Modularisierung, asynchronen Abläufen oder Client-Storage.
 
 ## 24.10.
 - [X] Arbeitspaket 1: Erstellen Sie mehrere Skizzen von Ihrem front end. Überlegen Sie sich auch, welche Elemente die Interaktion mit dem back end auslösen und wie sich die Oberfläche dadurch verändert. Bauen Sie auch Interaktionen ein, die keinen Aufruf der API benötigen, sondern sich im client bearbeiten lassen (sortieren, suchen etc.)
