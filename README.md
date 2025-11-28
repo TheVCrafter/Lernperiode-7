@@ -194,3 +194,75 @@ Die Website sieht nun so aus:
 
 <img src="StonkSimProgress2111.png">
 
+## 28.11.
+- [X] **Overview aktualisieren:** Sicherstellen, dass das Dashboard die aktuellen Account- und Holdings-Werte korrekt anzeigt.
+- [X] **Charts implementieren:** Wallet- und Crypto-Performance-Charts vollständig funktionsfähig machen, inkl. Speicherung der historischen Werte im LocalStorage.
+- [X] **Default-User-Wallet:** Fehlerbehebung für neue Nutzer, damit Standardwerte korrekt gesetzt und die 24h-Änderung berechnet werden.
+- [X] **Trade-Interaktivität verbessern:** Korrektes Laden und Anzeigen der Crypto-Performance beim Anklicken eines Coins aus der Marktübersicht.
+
+Heute habe ich mich darauf konzentriert, dass die **Übersicht und die Charts zuverlässig arbeiten**. Dabei habe ich die **LocalStorage-Logik** überarbeitet, sodass Wallet-Werte und historische Coin-Preise nach jedem Trade korrekt gespeichert werden. Außerdem habe ich die **Darstellung der Charts optimiert**, sodass die Graphen nur die für die Übersicht relevanten Punkte anzeigen, während alle weiteren Werte durch die Kurvenform sichtbar bleiben, ohne die Ansicht zu überladen.
+
+Ein weiteres Ziel war die **Korrektur des Default-User-Wallets**, damit neue Nutzer direkt mit einem Startwert ausgestattet werden und die Charts von Beginn an korrekt funktionieren.
+
+Damit sind die Kernfunktionen für **Account-Übersicht, Wallet-Performance und Crypto-Performance** nun vollständig implementiert und stabil. Die Charts reagieren auf neue Trades und Änderungen automatisch, und die 24h-Änderung wird zuverlässig berechnet.
+
+LocalStorage für Wallet und Crypto-Performance:
+
+```javascript
+// Wallet-Wert speichern
+function saveWalletValue(value) {
+    const now = new Date().toISOString();
+    const history = JSON.parse(localStorage.getItem("walletHistory") || "{}");
+    history[now] = value;
+    localStorage.setItem("walletHistory", JSON.stringify(history));
+}
+
+// Crypto-Preis speichern
+export function saveCryptoPrice(symbol, price) {
+    const now = new Date().toISOString();
+    const key = `cryptoHistory_${symbol}`;
+    const history = JSON.parse(localStorage.getItem(key) || "[]");
+    history.push({ time: now, price });
+    if (history.length > 1000) history.shift();
+    localStorage.setItem(key, JSON.stringify(history));
+}
+```
+Anzeige eines Crypto-Charts:
+
+```javascript
+export async function showCryptoChart(symbol, price) {
+    saveCryptoPrice(symbol, price);
+
+    const history = getCryptoHistory(symbol);
+    if (!history.length) return;
+
+    const labels = history.map(h => new Date(h.time).toLocaleDateString());
+    const values = history.map(h => h.price);
+
+    const canvas = document.getElementById("selected-crypto-graph");
+    canvas.style.display = "block";
+
+    selectedCryptoChart = new Chart(canvas.getContext("2d"), {
+        type: "line",
+        data: { labels, datasets: [{ label: symbol, data: values, borderColor: "#0099ff", backgroundColor: "rgba(0,153,255,0.2)", tension: 0.4, fill: true }] },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false }, title: { display: true, text: `${symbol} Performance` } },
+            scales: { x: { ticks: { color: "#e3edf7" } }, y: { ticks: { color: "#e3edf7" } } }
+        }
+    });
+}
+```
+
+Wallet-Performance-Chart:
+
+![Wallet Chart Placeholder](Resources/WalletChart.png)
+
+Crypto-Performance-Chart:
+
+![Crypto Chart Placeholder](Resources/CryptoChart.png)
+
+Overview-Panel:
+
+![Overview Placeholder](Resources/OverviewPanel.png)
