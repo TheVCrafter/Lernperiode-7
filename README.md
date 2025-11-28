@@ -271,3 +271,11 @@ Crypto-Performance-Chart:
 Overview-Panel:
 
 ![Overview Placeholder](OverviewPanel.png)
+
+## Reflexion
+
+In dieser Lernperiode habe ich viel über die **Planung und Umsetzung** eines interaktiven Webprojekts gelernt. Besonders spannend war die Arbeit mit **Live-Daten** und die Integration der API über einen kleinen **Server-Proxy**, um **CORS-Probleme** zu umgehen. Auch die Speicherung und Strukturierung von **Wallet- und Coin-Daten im LocalStorage** war eine wichtige Erfahrung, da sie die Grundlage für die **dynamische Aktualisierung der Charts** bildet.
+
+Die Arbeit an den **Charts** mit **Chart.js** hat mir gezeigt, wie man Daten **visuell aufbereitet**, interaktive **Zeitbereiche** implementiert und gleichzeitig die **Responsiveness** der Website sicherstellt. Auch die **Trade-Funktionen** habe ich erweitert, sodass Eingaben automatisch berechnet und Orders korrekt ausgeführt werden.
+
+Ein zentraler Lernpunkt war zudem die **Fehlerbehandlung** und **Benutzerfreundlichkeit**: selbst kleine Probleme wie fehlende Event-Listener können die Funktionalität stark beeinträchtigen. Insgesamt konnte ich meine **JavaScript-Kenntnisse deutlich verbessern** und den Crypto-Simulator **stabil, interaktiv und funktionsfähig** umsetzen.
